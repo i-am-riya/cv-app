@@ -95,7 +95,7 @@ function App() {
 
   return (
     <>
-      <div className="w-full h-auto p-8 items-center justify-center">
+      <div className="w-full h-auto p-2 md:p-8 items-center justify-center">
         <h1 className="text-4xl text-amber-600 font-black text-center">
           RESUME BUILDER
         </h1>
@@ -103,7 +103,7 @@ function App() {
           <button type="button" className="button" onClick={clear}>Clear</button>
 
         </div>
-        <div className="w-full h-auto flex flex-col lg:flex-row py-8 px-16 gap-4">
+        <div className="w-full h-auto flex flex-col lg:flex-row p-2 md:py-8 md:px-16 gap-4">
           <div className="w-full lg:w-2/5 bg-amber-200 py-4 px-8">
            
             <AccordionItem title="General Information" isOpen={openIndex===0} onToggle={() => toggle(0)}>
