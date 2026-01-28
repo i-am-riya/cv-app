@@ -6,6 +6,8 @@ import Experience from "./components/Experience";
 import CVPreview from "./components/CVPreview";
 import Skill from "./components/Skill";
 import AccordionItem from "./components/AccordionItem";
+import { pdf } from "@react-pdf/renderer";
+import CvPdfDocument from "./components/CvPdfDocument"; 
 
 function App() {
   const [basicInfo, setBasicInfo] = useState({
@@ -92,6 +94,24 @@ function App() {
     setOpenIndex(0);
   }
 
+  const downloadCV = async () => {
+  const blob = await pdf(
+    <CvPdfDocument
+      basicInfo={basicInfo}
+      education={education}
+      experience={experience}
+      skill={skill}
+    />
+  ).toBlob();
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = `${basicInfo.name || "Resume"}.pdf`;
+  a.click();
+  URL.revokeObjectURL(url);
+};
+
 
   return (
     <>
@@ -101,7 +121,9 @@ function App() {
         </h1>
         <div className="text-center my-8">
           <button type="button" className="button" onClick={clear}>Clear</button>
-
+          <button className="button ml-4" onClick={downloadCV}>
+    ⬇ Download CV
+  </button>
         </div>
         <div className="w-full h-auto flex flex-col lg:flex-row p-2 md:py-8 md:px-16 gap-4">
           <div className="w-full lg:w-2/5 bg-amber-200 py-4 px-8">

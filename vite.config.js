@@ -8,5 +8,16 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  resolve: {
+    alias: {
+      // Polyfills for react-pdf
+      stream: "stream-browserify",
+      buffer: "buffer",
+      process: "process/browser",
+    },
+  },
+  define: {
+    global: "globalThis",
 
+  },
 })
